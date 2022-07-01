@@ -13,11 +13,22 @@ function formatData(data) {
 }
 
 function validateData(data) {
-    const electronicsValid = ((Number(data.food) * 30) / 100) > Number(data.electronics);
-    const clothesValid =  ((Number(data.food) * 50) / 100) > Number(data.cloths);
-    const utensilsValid = (Number(data.utensils) <= 6 && Number.isInteger((Number(data.utensils) / 0.5)))
+    let electronicsValid;
+    let clothesValid;
+    let utensilsValid;
 
-    return electronicsValid && clothesValid && utensilsValid
+    if (data.electronics) {
+        electronicsValid = ((Number(data.food) * 30) / 100) > Number(data.electronics);
+    }
+    if (data.cloths) {
+        clothesValid =  ((Number(data.food) * 50) / 100) > Number(data.cloths);
+    }
+    if (data.utensils) {
+        utensilsValid = (Number(data.utensils) <= 6 && Number.isInteger((Number(data.utensils) / 0.5)))
+    }
+
+
+    return (electronicsValid === undefined || electronicsValid) && (clothesValid === undefined || clothesValid) && (utensilsValid === undefined || utensilsValid)
 }
 
 function getTotalSum(data) {
