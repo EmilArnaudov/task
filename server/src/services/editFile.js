@@ -5,6 +5,7 @@ async function editFile(req, res) {
     let data = {food: req.body.food, electronics: req.body.electronics, cloths: req.body.cloths, utensils: req.body.utensils};
     let budget = Number(req.body.budget);
 
+    console.log(data);
 
     const isValid = validateData(data);
     const totalSum = getTotalSum(data);

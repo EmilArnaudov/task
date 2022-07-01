@@ -27,14 +27,16 @@ function validateData(data) {
         utensilsValid = (Number(data.utensils) <= 6 && Number.isInteger((Number(data.utensils) / 0.5)))
     }
 
-
     return (electronicsValid === undefined || electronicsValid) && (clothesValid === undefined || clothesValid) && (utensilsValid === undefined || utensilsValid)
 }
 
 function getTotalSum(data) {
     let sum = 0;
     for (const key in data) {
-        sum += Number(data[key]);
+        if (data[key]) {
+            sum += Number(data[key]);
+        }
+
     }
 
     return sum;
